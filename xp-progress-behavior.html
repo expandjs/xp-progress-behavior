@@ -288,7 +288,7 @@ A behavior used to add progress capabilities on a custom element.
         _bufferRatioObserver: function () {
 
             // Styling
-            this.bufferBar.style.transform = this.bufferBar.style.webkitTransform = 'scale(' + (this.mode === 'buffer' ? this.bufferRatio || 0 : 1) + ', 1)';
+            this.bufferBar.style.transform = 'scale(' + (this.mode === 'buffer' ? this.bufferRatio || 0 : 1) + ', 1)';
         },
 
         // OBSERVER
@@ -309,7 +309,7 @@ A behavior used to add progress capabilities on a custom element.
         _ratioObserver: function () {
 
             // Styling
-            this.bar.style.transform = this.bar.style.webkitTransform = 'scale(' + (this.ratio || 0) + ', 1)';
+            this.bar.style.transform = 'scale(' + (this.ratio || 0) + ', 1)';
         },
 
         /*********************************************************************/
