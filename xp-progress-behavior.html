@@ -28,6 +28,13 @@ A behavior used to add progress capabilities on a custom element.
     Polymer.XPProgressBehavior = {
 
         /**
+         * Fired on hide.
+         *
+         * @event xp-hide
+         * @param {Element} firer
+         */
+
+        /**
          * Fired when the buffering state changes.
          *
          * @event xp-progress-buffer
@@ -43,6 +50,12 @@ A behavior used to add progress capabilities on a custom element.
          * @param {Element} firer
          * @param {string} state
          * @bubbles
+         */
+
+        /**
+         * Fired on show.
+         * @event xp-show
+         * @param {Element} firer
          */
 
         /*********************************************************************/
@@ -237,8 +250,11 @@ A behavior used to add progress capabilities on a custom element.
              * @attribute active
              * @type boolean
              * @default false
+             * @notifies
              */
             showed: {
+                notify: true,
+                observer: '_showedObserver',
                 reflectToAttribute: true,
                 type: Boolean,
                 value: false
@@ -310,6 +326,13 @@ A behavior used to add progress capabilities on a custom element.
 
             // Styling
             this.bar.style.transform = 'scale(' + (this.ratio || 0) + ', 1)';
+        },
+
+        // OBSERVER
+        _showedObserver: function () {
+
+            // Firing
+            if (this.isAttached) { this.fire(this.showed ? 'xp-show' : 'xp-hide', {firer: this}); }
         },
 
         /*********************************************************************/
